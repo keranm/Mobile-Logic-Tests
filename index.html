@@ -3,11 +3,56 @@
   <head>
     <title>Acceleration Example</title>
 
+
+    <link href="assets/style.css" rel="stylesheet">
+
     <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
     <script type="text/javascript" charset="utf-8">
 
     // The watch id references the current `watchAcceleration`
     var watchID = null;
+
+    var startMove = $('#startMove');
+    startMove.live("click",function(){
+        startMoving();
+        $(this).hide();
+    });
+
+    function startMoving(){
+ 
+        var options = { frequency: 500 };
+ 
+        watchMove = navigator.accelerometer.watchAcceleration(moveObject, onError, options);
+    }
+
+    function moveObject(acceleration) {
+        var myObj = $('#obj');
+        var wall = $('#obj_wall');
+        var objPosition = myObj.position();
+        var leftBoundary = 0;
+        var topBoundary = 0;
+        var rightBoundary = wall.width() - myObj.width() - 10; // 10 represents the 10px for the margin
+        var bottomBoundary = wall.height() - myObj.height() - 10; // 10 represents the 10px for the margin
+         
+        if( acceleration.x < 0 && objPosition.left <= rightBoundary ) {
+            myObj.animate({
+                left:'+=10'
+            },100);
+        } else if( acceleration.x > 0 && objPosition.left > leftBoundary ) {
+            myObj.animate({
+                left:'-=10'
+            },100);
+        }
+        if( acceleration.y < 0 && objPosition.top > topBoundary ) {
+            myObj.animate({
+                top:'-=10'
+            },100);
+        } else if(acceleration.y > 0 && objPosition.top <= bottomBoundary ) {
+            myObj.animate({
+                top:'+=10'
+            },100);
+        }
+    }
 
     // Wait for Cordova to load
     //
@@ -18,6 +63,8 @@
     function onDeviceReady() {
         alert("Device Ready")
         startWatch();
+
+
     }
 
     // Start watching the acceleration
@@ -54,9 +101,19 @@
         alert('onError!');
     }
 
+
+
     </script>
   </head>
   <body>
     <div id="accelerometer">Waiting for accelerometer...</div>
+    <div data-role="content">
+        <div id="obj_wall">
+            <div id="obj"></div>
+        </div>
+        <div>
+            <a href="#" id="startMove" data-role="button">Start Moving</a>
+        </div>
+    </div>
   </body>
 </html>
