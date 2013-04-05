@@ -35,7 +35,7 @@
     // Start watching the acceleration
     function startMoving(){
 
-        var options = { frequency: 500 };
+        var options = { frequency: 10 };
 
         watchMove = navigator.accelerometer.watchAcceleration(moveObject, onError, options);
     }
@@ -52,20 +52,20 @@
     	
     	if( acceleration.x < 0 && objPosition.left <= rightBoundary ) {
     		myObj.animate({
-    			left:'+=10'
+    			left:'+=2'
     		},100);
     	} else if( acceleration.x > 0 && objPosition.left > leftBoundary ) {
     		myObj.animate({
-    			left:'-=10'
+    			left:'-=2'
     		},100);
     	}
     	if( acceleration.y < 0 && objPosition.top > topBoundary ) {
     		myObj.animate({
-    			top:'-=10'
+    			top:'-=2'
     		},100);
     	} else if(acceleration.y > 0 && objPosition.top <= bottomBoundary ) {
     		myObj.animate({
-    			top:'+=10'
+    			top:'+=2'
     		},100);
     	}
     }
