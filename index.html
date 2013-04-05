@@ -12,7 +12,7 @@
 
     // The watch id references the current `watchAcceleration`
     var watchID = null;
-
+    /*
     var startMove = $('#startMove');
     startMove.live("click",function(){
         startMoving();
@@ -24,7 +24,7 @@
         var options = { frequency: 500 };
  
         watchMove = navigator.accelerometer.watchAcceleration(moveObject, onError, options);
-    }
+    }*/
 
     function moveObject(acceleration) {
         var myObj = $('#obj');
@@ -94,6 +94,8 @@
         element.innerHTML = 'Acceleration X: ' + acceleration.x + '<br />' +
                             'Acceleration Y: ' + acceleration.y + '<br />' +
                             'Timestamp: '      + acceleration.timestamp + '<br />';
+
+        moveObject(acceleration)
     }
 
     // onError: Failed to get the acceleration
@@ -111,9 +113,6 @@
     <div data-role="content">
         <div id="obj_wall">
             <div id="obj"></div>
-        </div>
-        <div>
-            <a href="#" id="startMove" data-role="button">Start Moving</a>
         </div>
     </div>
   </body>
