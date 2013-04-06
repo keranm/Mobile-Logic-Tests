@@ -19,10 +19,17 @@
         navigator.accelerometer.getCurrentAcceleration(onSuccess, onError); 
 
         $('#obj_wall').css('width', width-20)  
-        $('#obj_wall').css('height', height-20)     
+        $('#obj_wall').css('height', height-80)     
         
         // Start Watch Button
-        startWatch();
+        startWatchBtn.click(function(){
+            startWatch();
+        });
+        
+        // Stop Watch Button
+        stopWatchBtn.click(function(){
+            stopWatch();
+        });
         
     }
     

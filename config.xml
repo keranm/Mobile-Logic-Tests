@@ -3,13 +3,13 @@
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.keranmckenzie.logictest"
         versionCode="10" 
-        version   = "0.0.005">
+        version   = "0.0.006">
 
     <name>LogicTest</name>
 
     <description>Dummy Project for logic testing</description>
 
-    <author href="http://www.keranmckenzie.com/" email="developers@myob.com">
+    <author href="http://www.keranmckenzie.com/" email="">
         Keran McKenzie
     </author>
 
