@@ -11,18 +11,19 @@
     	
     	var watchID = null;
   		var watchMove = null;
+
+        var width = window.innerWidth
+        var height = window.innerHeight // use native JS not any plugin to get the right sizes
+        var loadingOffset = 1000
     	
-        navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);        
+        navigator.accelerometer.getCurrentAcceleration(onSuccess, onError); 
+
+        $('#obj_wall').css('width', width-20)  
+        $('#obj_wall').css('height', height-20)     
         
         // Start Watch Button
-        startWatchBtn.click(function(){
-        	startWatch();
-        });
+        startWatch();
         
-        // Stop Watch Button
-        stopWatchBtn.click(function(){
-        	stopWatch();
-        });
     }
     
     // Start moving the object
@@ -35,7 +36,7 @@
     // Start watching the acceleration
     function startMoving(){
 
-        var options = { frequency: 10 };
+        var options = { frequency: 1 };
 
         watchMove = navigator.accelerometer.watchAcceleration(moveObject, onError, options);
     }
@@ -53,20 +54,20 @@
     	if( acceleration.x < 0 && objPosition.left <= rightBoundary ) {
     		myObj.animate({
     			left:'+=2'
-    		},100);
+    		},10);
     	} else if( acceleration.x > 0 && objPosition.left > leftBoundary ) {
     		myObj.animate({
     			left:'-=2'
-    		},100);
+    		},10);
     	}
     	if( acceleration.y < 0 && objPosition.top > topBoundary ) {
     		myObj.animate({
     			top:'-=2'
-    		},100);
+    		},10);
     	} else if(acceleration.y > 0 && objPosition.top <= bottomBoundary ) {
     		myObj.animate({
     			top:'+=2'
-    		},100);
+    		},10);
     	}
     }
 
